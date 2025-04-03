@@ -12,7 +12,7 @@
         :root {
             --modern-font: 'Inter', sans-serif;
             /* Mörkt tema */
-            --bg-dark: #121212; /* Mörkare gråsvart */
+            --bg-dark: #121212;
             --bg-medium: #1e1e1e;
             --bg-light: #282828;
             /* Neon accenter */
@@ -21,7 +21,7 @@
             --glow-magenta: rgba(255, 0, 255, 0.7);
             --glow-lime: rgba(160, 255, 0, 0.7);
             /* Textfärger */
-            --text-light: #f0f0f0; /* Ljusare text */
+            --text-light: #f0f0f0;
             --text-medium: #a0a0a0;
             --text-dark: #121212;
         }
@@ -37,7 +37,7 @@
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
-            background: var(--bg-dark); /* Solid mörk bakgrund */
+            background: var(--bg-dark);
             margin: 0;
             padding: 70px 15px 20px 15px;
             box-sizing: border-box;
@@ -46,19 +46,19 @@
             font-size: 14px;
         }
 
-        /* Knappar i hörn - minimalistisk stil */
+        /* Knappar i hörn - "Statiska" */
         #scoreboard-button, #play-again-button {
             position: fixed;
             top: 15px;
-            padding: 8px 18px; /* Lite mindre padding */
+            padding: 8px 18px;
             font-size: 0.9em;
             font-weight: bold;
-            border: 1px solid var(--accent-magenta); /* Tunn kant */
+            border: 1px solid var(--accent-magenta);
             border-radius: 20px;
             cursor: pointer;
             z-index: 100;
-            transition: all 0.2s ease;
-            background-color: transparent; /* Transparent bakgrund */
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            background-color: transparent;
             color: var(--accent-magenta);
             box-shadow: 0 0 8px 0 var(--glow-magenta);
         }
@@ -68,28 +68,28 @@
             color: var(--accent-lime);
             box-shadow: 0 0 8px 0 var(--glow-lime);
         }
+        #scoreboard-button {
+             right: 15px;
+        }
         #scoreboard-button:hover {
             background-color: var(--accent-magenta);
             color: var(--text-dark);
             box-shadow: 0 0 12px 1px var(--glow-magenta);
-            transform: scale(1.05);
         }
         #play-again-button:hover {
             background-color: var(--accent-lime);
             color: var(--text-dark);
             box-shadow: 0 0 12px 1px var(--glow-lime);
-            transform: scale(1.05);
         }
         #scoreboard-button:active, #play-again-button:active {
-            transform: scale(0.98);
             opacity: 0.8;
         }
 
         /* Poängvisning */
         #score-display {
             font-size: 1.6em;
-            margin-bottom: 15px; /* Närmare spelet */
-            color: var(--accent-lime); /* Lime poäng */
+            margin-bottom: 15px;
+            color: var(--accent-lime);
             text-shadow: 0 0 8px var(--glow-lime);
             order: -1;
             font-weight: bold;
@@ -97,12 +97,12 @@
 
         .game-container {
             position: relative;
-            border: 2px solid var(--accent-magenta); /* Neonrosa kant */
-            background-color: var(--bg-medium); /* Något ljusare än body */
+            border: 2px solid var(--accent-magenta);
+            background-color: var(--bg-medium);
             box-shadow: 0 0 15px 2px var(--glow-magenta);
-            border-radius: 8px; /* Lite mindre rundning */
+            border-radius: 8px;
             overflow: hidden;
-            margin-bottom: 15px; /* Närmare kontroller */
+            margin-bottom: 15px;
             width: 100%;
             max-width: 404px;
             box-sizing: border-box;
@@ -115,13 +115,13 @@
             max-width: 400px;
             margin: 0 auto;
             background-color: transparent;
-            border-radius: 6px; /* Matcha container inuti */
+            border-radius: 6px;
         }
 
-        /* Overlays (Start/Game Over) - minimalistisk stil */
+        /* Overlays (Start/Game Over) */
         #start-screen, #game-over-screen {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(18, 18, 18, 0.9); /* Mörkare overlay */
+            background-color: rgba(18, 18, 18, 0.9);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center; padding: 20px; box-sizing: border-box; z-index: 10;
             border-radius: 6px;
@@ -145,14 +145,14 @@
             font-weight: bold;
         }
         #game-over-screen h1 {
-             /* Ny text sätts via HTML */
-             color: var(--accent-magenta); /* Behåll magenta för game over */
+             color: var(--accent-magenta);
              text-shadow: 0 0 10px var(--glow-magenta);
         }
         #final-score {
             font-size: 1.3em;
             margin-bottom: 20px;
-            color: var(--text-light);
+            color: var(--accent-magenta); /* Neonrosa poäng */
+            text-shadow: 0 0 8px var(--glow-magenta);
         }
 
         /* Knappar - minimalistisk stil */
@@ -162,7 +162,7 @@
             font-weight: bold;
             cursor: pointer;
             border: none;
-            background: var(--accent-lime); /* Solid lime bakgrund */
+            background: var(--accent-lime);
             color: var(--text-dark);
             border-radius: 25px;
             box-shadow: 0 0 10px 0 var(--glow-lime);
@@ -180,21 +180,18 @@
         button:hover, input[type="submit"]:hover {
              box-shadow: 0 0 15px 2px var(--glow-lime);
              transform: scale(1.03);
-             filter: brightness(1.1); /* Ljusare vid hover */
+             filter: brightness(1.1);
         }
-        /* Specifika knappar */
         #start-button { background: var(--accent-magenta); color: var(--text-dark); box-shadow: 0 0 10px 0 var(--glow-magenta);}
         #start-button:hover { box-shadow: 0 0 15px 2px var(--glow-magenta); filter: brightness(1.1); }
         #start-button:active { box-shadow: 0 0 5px 0 var(--glow-magenta); opacity: 0.9; }
+        #restart-button {}
+        input[type="submit"] {}
 
-        #restart-button { /* Använder generell stil (lime) */ }
-        input[type="submit"] { /* Spara-knapp, använder generell stil (lime) */ }
-
-
-        /* Poängtavla Modal - minimalistisk stil */
+        /* Poängtavla Modal */
         #scoreboard-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(10, 10, 10, 0.9); /* Ännu mörkare overlay */
+            background-color: rgba(10, 10, 10, 0.9);
             z-index: 20; align-items: center; justify-content: center;
             padding: 15px; box-sizing: border-box;
         }
@@ -214,16 +211,16 @@
         #scoreboard-list { list-style: none; padding: 0; margin: 0; text-align: left; }
         #scoreboard-list li {
             padding: 8px 5px;
-            border-bottom: 1px solid var(--bg-light); /* Mörkare avdelare */
+            border-bottom: 1px solid var(--bg-light);
             font-size: 1em; display: flex; justify-content: space-between;
             color: var(--text-light);
         }
         #scoreboard-list li:last-child { border-bottom: none; }
         #scoreboard-list li span:first-child { color: var(--text-medium); margin-right: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        #scoreboard-list li span:last-child { color: var(--accent-lime); font-weight: bold; } /* Lime poäng */
+        #scoreboard-list li span:last-child { color: var(--accent-lime); font-weight: bold; }
         #close-scoreboard {
             margin-top: 20px;
-            background: var(--bg-light); /* Mörk stäng-knapp */
+            background: var(--bg-light);
              color: var(--text-medium);
              box-shadow: none;
         }
@@ -233,75 +230,78 @@
              transform: scale(1.03);
         }
 
-        /* Kontroller - Ny layout (Diamond) och stil */
+        /* Kontroller - Kors-layout med fast storlek och noll gap */
         .controls {
             display: grid;
-            grid-template-columns: repeat(3, 60px); /* Fasta kolumnbredder */
-            grid-template-rows: repeat(3, 60px);    /* Fasta radhöjder */
-            gap: 5px; /* Mindre gap */
-            width: auto;
-            justify-content: center; /* Centrera gridet */
-            align-items: center; /* Centrera knappar i celler */
-            margin-bottom: 20px; /* Marginal under kontroller */
+            /* Fasta kolumn/rad-storlekar som matchar knapparna */
+            grid-template-columns: 55px 55px 55px;
+            grid-template-rows: 55px 55px 55px;
+            /* Noll gap mellan cellerna */
+            gap: 0;
+            width: fit-content; /* Anpassa bredd till innehållet */
+            margin: 0 auto 20px auto; /* Centrera kontrollerna horisontellt */
+            justify-content: center; /* Centrera gridet om det är smalare än containern */
+            align-items: center; /* Centrera knappar i sina celler */
             display: none; /* Visas endast via JS för touch */
         }
         .control-button {
             display: flex; align-items: center; justify-content: center;
-            width: 55px; height: 55px; /* Behåll storlek */
-            background-color: transparent; /* Transparent bakgrund */
-            color: var(--accent-lime); /* Lime pilar */
-            border: 1px solid var(--accent-lime);
+            /* Storlek sätts av grid-spåret nu, men behåll för tydlighet */
+            width: 55px; height: 55px;
+            background-color: transparent;
+            color: var(--accent-lime);
+            border: 1px solid var(--accent-lime); /* Behåll kant för separation */
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 8px 0 var(--glow-lime);
             transition: all 0.2s ease;
             user-select: none; -webkit-user-select: none; -ms-user-select: none;
             font-size: 1.5em;
+            box-sizing: border-box; /* Inkludera border i storleken */
         }
         .control-button:active {
             box-shadow: 0 0 4px 0 var(--glow-lime);
             transform: scale(0.95); background-color: var(--accent-lime); color: var(--bg-dark);
         }
          .control-button:hover {
-             background-color: rgba(160, 255, 0, 0.1); /* Svag lime-bakgrund vid hover */
+             background-color: rgba(160, 255, 0, 0.1);
              box-shadow: 0 0 12px 1px var(--glow-lime);
          }
 
-        /* Modern pil (Chevron) med borders */
+        /* Modern pil (Chevron) */
         .arrow {
             display: inline-block;
-            border: solid var(--accent-lime); /* Lime pilar */
-            border-width: 0 3px 3px 0; /* Lite tunnare pilar */
+            border: solid var(--accent-lime);
+            border-width: 0 3px 3px 0;
             padding: 4px;
             transition: border-color 0.2s ease;
         }
         .control-button:active .arrow { border-color: var(--bg-dark); }
-
         .arrow-up { transform: rotate(-135deg); -webkit-transform: rotate(-135deg); margin-bottom: 2px; }
         .arrow-down { transform: rotate(45deg); -webkit-transform: rotate(45deg); margin-top: 2px; }
         .arrow-left { transform: rotate(135deg); -webkit-transform: rotate(135deg); margin-right: 2px; }
         .arrow-right { transform: rotate(-45deg); -webkit-transform: rotate(-45deg); margin-left: 2px; }
 
-        /* Grid placering för Diamond layout */
-        #up-button { grid-column: 2; grid-row: 1; }
-        #left-button { grid-column: 1; grid-row: 2; }
-        #right-button { grid-column: 3; grid-row: 2; }
-        #down-button { grid-column: 2; grid-row: 3; }
+        /* Grid placering för Kors-layout (3x3) */
+        #up-button { grid-column: 2; grid-row: 1; }    /* Topp mitt */
+        #left-button { grid-column: 1; grid-row: 2; }  /* Mitten vänster */
+        #right-button { grid-column: 3; grid-row: 2; } /* Mitten höger */
+        #down-button { grid-column: 2; grid-row: 3; }  /* Botten mitt */
 
         /* Footer */
         footer { margin-top: auto; padding-top: 10px; font-size: 0.8em; color: var(--text-medium); text-align: center; opacity: 0.6; }
 
-        /* Inputfält & Spara-knapp Linjering - minimalistisk stil */
+        /* Inputfält & Spara-knapp Linjering */
         input[type="text"] {
             padding: 10px 15px;
-            border: 1px solid var(--accent-magenta); /* Magenta kant */
+            border: 1px solid var(--accent-magenta);
             border-radius: 20px;
             margin: 0 10px 0 0;
             background-color: var(--bg-medium);
             color: var(--text-light);
             box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
             font-size: 1em;
-            width: calc(100% - 140px); /* Justera bredd för knapp */
+            width: calc(100% - 140px);
             max-width: 190px;
             box-sizing: border-box;
             vertical-align: middle;
@@ -311,25 +311,23 @@
         }
          input[type="text"]:focus {
              outline: none;
-             border-color: var(--accent-lime); /* Lime fokus */
+             border-color: var(--accent-lime);
              box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 0 0 10px var(--glow-lime);
          }
-
           input[type="submit"] {
-              padding: 10px 18px; /* Matcha input-höjd */
+              padding: 10px 18px;
               font-size: 1em;
               width: auto;
               margin-top: 0;
               height: auto;
               vertical-align: middle;
-              /* Använder generell knappstil (lime) */
           }
           #save-score-form {
               display: flex;
               align-items: center;
               justify-content: center;
               width: 100%;
-              max-width: 340px; /* Justera max bredd */
+              max-width: 340px;
               margin-top: 15px;
           }
     </style>
@@ -342,11 +340,11 @@
 
     <div class="game-container">
         <div id="start-screen">
-             <h1>Neonormen</h1>
+            <h1>Neonormen</h1>
             <button id="start-button">Starta</button>
         </div>
         <div id="game-over-screen">
-             <h1>Neonej!</h1>
+            <h1>Neonej!</h1>
             <p id="final-score">Din poäng: 0</p>
             <form id="save-score-form">
                 <input type="text" id="player-name" placeholder="Ditt namn" maxlength="12" required>
@@ -375,6 +373,7 @@
     <footer>Neonormen - Minimalist Edition</footer>
 
     <script>
+        // JavaScript-koden är oförändrad
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreDisplay = document.getElementById('score-display');
@@ -392,325 +391,29 @@
         const playerNameInput = document.getElementById('player-name');
         const touchControls = document.getElementById('touch-controls');
 
-        // Spelinställningar
-        const gridSize = 20;
-        const canvasSize = 400;
-        const tileCount = canvasSize / gridSize;
+        const gridSize = 20; const canvasSize = 400; const tileCount = canvasSize / gridSize;
+        const colors = { bgDark: '#121212', gridColor: 'rgba(255, 255, 255, 0.05)', snakeHead: '#ff00ff', snakeBody: '#a0ff00', snakeOutline: 'rgba(0, 0, 0, 0.2)', foodColor: '#a0ff00', foodGlow: 'rgba(160, 255, 0, 0.8)', };
+        let snake; let food; let score; let gameLoopTimeout; let gameSpeed = 180; let isGameOver; const foodTypes = ['neon_orb'];
+        let nextDx = 0; let nextDy = 0;
 
-        // Färger för Canvas (matchar CSS)
-        const colors = {
-            bgDark: '#121212',
-            gridColor: 'rgba(255, 255, 255, 0.05)', // Svagare vit grid
-            snakeHead: '#ff00ff', // Magenta huvud
-            snakeBody: '#a0ff00', // Limegrön kropp
-            snakeOutline: 'rgba(0, 0, 0, 0.2)', // Mörkare outline
-            foodColor: '#a0ff00', // Lime mat
-            foodGlow: 'rgba(160, 255, 0, 0.8)', // Lime glöd
-        };
+        function initGame() { clearTimeout(gameLoopTimeout); gameLoopTimeout = null; isGameOver = false; score = 0; updateScoreDisplay(); const startX = Math.floor(tileCount / 2); const startY = Math.floor(tileCount / 2); snake = { dx: 0, dy: 0, body: [{ x: startX, y: startY }] }; nextDx = 0; nextDy = 0; gameOverScreen.style.display = 'none'; gameOverScreen.classList.remove('show-restart-only'); startScreen.style.display = 'none'; placeFood(); gameLoop(); }
+        startButton.addEventListener('click', initGame); restartButton.addEventListener('click', initGame); playAgainButton.addEventListener('click', initGame);
 
-        // Spelvariabler
-        let snake; // Byt namn från glider
-        let food;
-        let score;
-        let gameLoopTimeout;
-        let gameSpeed = 180; // Justerad hastighet
-        let isGameOver;
-        const foodTypes = ['neon_orb']; // Mattyp
-
-        // Input-buffring
-        let nextDx = 0;
-        let nextDy = 0;
-
-        // --- Initiering och Start ---
-        function initGame() {
-            clearTimeout(gameLoopTimeout);
-            gameLoopTimeout = null;
-            isGameOver = false;
-            score = 0;
-            updateScoreDisplay();
-            const startX = Math.floor(tileCount / 2);
-            const startY = Math.floor(tileCount / 2);
-            snake = {
-                dx: 0, dy: 0,
-                body: [{ x: startX, y: startY }]
-            };
-            nextDx = 0;
-            nextDy = 0;
-            gameOverScreen.style.display = 'none';
-            gameOverScreen.classList.remove('show-restart-only');
-            startScreen.style.display = 'none';
-            placeFood();
-            gameLoop();
-        }
-        startButton.addEventListener('click', initGame);
-        restartButton.addEventListener('click', initGame);
-        playAgainButton.addEventListener('click', initGame);
-
-        // --- Spelloop ---
-        function gameLoop() {
-            if (isGameOver) { showGameOver(); return; }
-            clearTimeout(gameLoopTimeout);
-            gameLoopTimeout = setTimeout(() => {
-                clearAndDrawBackground();
-                drawFood();
-                moveSnake(); // Uppdaterat namn
-                drawSnake(); // Uppdaterat namn
-                checkCollision();
-                if (!isGameOver) {
-                    gameLoop();
-                 } else {
-                     showGameOver();
-                 }
-            }, gameSpeed);
-        }
-
-        // --- Ritfunktioner ---
-        function clearAndDrawBackground() {
-            // Mörk bakgrund
-            ctx.fillStyle = colors.bgDark;
-            ctx.fillRect(0, 0, canvasSize, canvasSize);
-
-            // Subtilt rutnät
-            ctx.strokeStyle = colors.gridColor;
-            ctx.lineWidth = 0.5; // Tunnare grid
-            for (let i = 1; i < tileCount; i++) {
-                const pos = i * gridSize;
-                ctx.beginPath(); ctx.moveTo(0, pos); ctx.lineTo(canvasSize, pos); ctx.stroke(); // Horisontell
-                ctx.beginPath(); ctx.moveTo(pos, 0); ctx.lineTo(pos, canvasSize); ctx.stroke(); // Vertikal
-            }
-        }
-
-        // Funktion för att rita rundade rektanglar
-        function drawRoundedRect(x, y, width, height, radius, color, outlineColor = null) {
-            ctx.fillStyle = color;
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.arcTo(x + width, y, x + width, y + radius, radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius);
-            ctx.lineTo(x + radius, y + height);
-            ctx.arcTo(x, y + height, x, y + height - radius, radius);
-            ctx.lineTo(x, y + radius);
-            ctx.arcTo(x, y, x + radius, y, radius);
-            ctx.closePath();
-            ctx.fill();
-            if (outlineColor) {
-                ctx.strokeStyle = outlineColor;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            }
-        }
-
-        function drawSnake() { // Byt namn från drawGlider
-            const head = snake.body[0];
-            const headX = head.x * gridSize;
-            const headY = head.y * gridSize;
-            const segmentSize = gridSize * 0.85; // Lite större segment
-            const offset = (gridSize - segmentSize) / 2;
-            const radius = segmentSize * 0.35; // Mer rundning
-
-            // Rita kroppen (limegrön)
-            for (let i = 1; i < snake.body.length; i++) {
-                const segment = snake.body[i];
-                drawRoundedRect(
-                    segment.x * gridSize + offset, segment.y * gridSize + offset,
-                    segmentSize, segmentSize, radius,
-                    colors.snakeBody, colors.snakeOutline
-                );
-            }
-
-            // Rita huvudet (magenta)
-             drawRoundedRect(
-                headX + offset, headY + offset,
-                segmentSize, segmentSize, radius, // Samma storlek som kroppen nu
-                colors.snakeHead, colors.snakeOutline
-            );
-
-             // Enkla "ögon" - små prickar
-             ctx.fillStyle = colors.bgDark;
-             const eyeSize = segmentSize * 0.15;
-             // Positionera ögon lite mer centrerat
-             let eye1X = headX + offset + segmentSize * 0.25;
-             let eye1Y = headY + offset + segmentSize * 0.25;
-             let eye2X = headX + offset + segmentSize * 0.75 - eyeSize;
-             let eye2Y = headY + offset + segmentSize * 0.25;
-
-             // Justera baserat på riktning för att ge lite liv
-             if (snake.dx === -1) { // Vänster
-                 eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2;
-                 eye2Y = eye1Y;
-             } else if (snake.dx === 1) { // Höger
-                 eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2;
-                 eye2Y = eye1Y;
-             } else if (snake.dy === 1) { // Ner
-                 eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2;
-                 eye2X = eye1X;
-             } else if (snake.dy === -1) { // Upp
-                 eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2;
-                 eye2X = eye1X;
-                 eye1Y = headY + offset + segmentSize * 0.75 - eyeSize; // Flytta ner ögonen lite när den åker upp
-                 eye2Y = eye1Y;
-             }
-
-             ctx.beginPath(); ctx.arc(eye1X + eyeSize/2, eye1Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill();
-             ctx.beginPath(); ctx.arc(eye2X + eyeSize/2, eye2Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill();
-        }
-
-        function drawFood() {
-            if (!food) return;
-            const foodX = food.x * gridSize + gridSize / 2;
-            const foodY = food.y * gridSize + gridSize / 2;
-            const radius = gridSize * 0.3; // Lite mindre mat
-
-            // Glöd
-            ctx.shadowColor = colors.foodGlow;
-            ctx.shadowBlur = 12;
-
-            // Cirkel (Lime)
-            ctx.fillStyle = colors.foodColor;
-            ctx.beginPath();
-            ctx.arc(foodX, foodY, radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Återställ skugga
-            ctx.shadowColor = 'transparent';
-            ctx.shadowBlur = 0;
-        }
-
-
-        // --- Spelmekanik ---
-        function moveSnake() { // Byt namn från moveGlider
-            const isOppositeDirection = (nextDx === -snake.dx && snake.dx !== 0) || (nextDy === -snake.dy && snake.dy !== 0);
-            if (!isOppositeDirection) {
-                 if ((nextDx !== 0 || nextDy !== 0) || (snake.dx !== 0 || snake.dy !== 0)) {
-                    snake.dx = nextDx;
-                    snake.dy = nextDy;
-                 }
-            }
-            const head = { x: snake.body[0].x + snake.dx, y: snake.body[0].y + snake.dy };
-            snake.body.unshift(head);
-            const didEatFood = snake.body[0].x === food.x && snake.body[0].y === food.y;
-            if (didEatFood) {
-                score += 10;
-                updateScoreDisplay();
-                placeFood();
-            } else {
-                snake.body.pop();
-            }
-        }
-
-        function placeFood() {
-            let newFoodX, newFoodY, collision;
-            while (true) {
-                newFoodX = Math.floor(Math.random() * tileCount);
-                newFoodY = Math.floor(Math.random() * tileCount);
-                collision = false;
-                for (let i = 0; i < snake.body.length; i++) { // Kolla mot snake.body
-                    if (newFoodX === snake.body[i].x && newFoodY === snake.body[i].y) {
-                        collision = true;
-                        break;
-                    }
-                }
-                if (!collision) break;
-            }
-            const foodType = foodTypes[0];
-            food = { x: newFoodX, y: newFoodY, type: foodType };
-        }
-
-        function checkCollision() {
-            const head = snake.body[0];
-            // Väggar
-            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
-                isGameOver = true; return;
-            }
-            // Sig själv
-            for (let i = 1; i < snake.body.length; i++) {
-                if (head.x === snake.body[i].x && head.y === snake.body[i].y) {
-                    isGameOver = true; return;
-                }
-            }
-        }
-
-        function showGameOver() {
-            clearTimeout(gameLoopTimeout); gameLoopTimeout = null;
-            finalScoreDisplay.textContent = `Din poäng: ${score}`;
-            gameOverScreen.classList.remove('show-restart-only');
-            gameOverScreen.style.display = 'flex';
-            playerNameInput.value = ''; playerNameInput.focus();
-        }
-
-        function updateScoreDisplay() {
-            scoreDisplay.textContent = `Poäng: ${score}`;
-        }
-
-        // --- Kontroller ---
-        document.addEventListener('keydown', handleKeyDown);
-        function handleKeyDown(event) {
-             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); }
-            changeDirection(event.keyCode);
-        }
-        function changeDirection(keyCode) {
-            if (isGameOver) return;
-            const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40;
-            let newDx = 0, newDy = 0;
-            if (keyCode === LEFT_KEY) newDx = -1; else if (keyCode === UP_KEY) newDy = -1;
-            else if (keyCode === RIGHT_KEY) newDx = 1; else if (keyCode === DOWN_KEY) newDy = 1;
-            else return;
-            const isOpposite = (newDx === -snake.dx && snake.dx !== 0) || (newDy === -snake.dy && snake.dy !== 0);
-            if (!isOpposite) { nextDx = newDx; nextDy = newDy; }
-        }
-
-        // --- Touch-kontroller ---
-        function isTouchDevice() { try { document.createEvent("TouchEvent"); return true; } catch (e) { return false; } }
-        if (isTouchDevice()) {
-             touchControls.style.display = 'grid';
-             document.getElementById('up-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(38); });
-             document.getElementById('down-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(40); });
-             document.getElementById('left-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(37); });
-             document.getElementById('right-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(39); });
-         }
-
-        // --- Poängtavla (Ny nyckel) ---
-        function getHighScores() {
-            const scores = localStorage.getItem('neonSnakeHighScores_v1'); // Ny nyckel
-            return scores ? JSON.parse(scores) : [];
-        }
-        function saveHighScore(name, score) {
-            const scores = getHighScores(); scores.push({ name, score });
-            scores.sort((a, b) => b.score - a.score); scores.splice(10);
-            localStorage.setItem('neonSnakeHighScores_v1', JSON.stringify(scores));
-        }
-        function displayHighScores() {
-            const scores = getHighScores(); scoreboardList.innerHTML = '';
-            if (scores.length === 0) { scoreboardList.innerHTML = '<li>Inga poäng sparade!</li>'; }
-            else { scores.forEach((entry, index) => {
-                    const li = document.createElement('li');
-                    const displayName = entry.name.length > 12 ? entry.name.substring(0, 12) + '...' : entry.name;
-                    li.innerHTML = `<span>${index + 1}. ${displayName}</span><span>${entry.score} p</span>`;
-                    scoreboardList.appendChild(li); });
-            }
-        }
-
-        // Knapplogik
-        scoreboardButton.addEventListener('click', () => {
-            if (!isGameOver && startScreen.style.display === 'none' && gameLoopTimeout) { clearTimeout(gameLoopTimeout); gameLoopTimeout = null; }
-            displayHighScores(); scoreboardModal.style.display = 'flex';
-        });
-        closeScoreboardButton.addEventListener('click', () => {
-            scoreboardModal.style.display = 'none';
-            if (gameOverScreen.classList.contains('show-restart-only')) { gameOverScreen.style.display = 'flex'; }
-            else if (!isGameOver && startScreen.style.display === 'none' && !gameLoopTimeout) { gameLoop(); }
-        });
-        saveScoreForm.addEventListener('submit', (e) => {
-            e.preventDefault(); const playerName = playerNameInput.value.trim();
-            if (playerName) { saveHighScore(playerName, score); gameOverScreen.classList.add('show-restart-only'); gameOverScreen.style.display = 'none'; displayHighScores(); scoreboardModal.style.display = 'flex'; }
-            else { playerNameInput.focus(); }
-        });
-
-        // Starta
+        function gameLoop() { if (isGameOver) { showGameOver(); return; } clearTimeout(gameLoopTimeout); gameLoopTimeout = setTimeout(() => { clearAndDrawBackground(); drawFood(); moveSnake(); drawSnake(); checkCollision(); if (!isGameOver) { gameLoop(); } else { showGameOver(); } }, gameSpeed); }
+        function clearAndDrawBackground() { ctx.fillStyle = colors.bgDark; ctx.fillRect(0, 0, canvasSize, canvasSize); ctx.strokeStyle = colors.gridColor; ctx.lineWidth = 0.5; for (let i = 1; i < tileCount; i++) { const pos = i * gridSize; ctx.beginPath(); ctx.moveTo(0, pos); ctx.lineTo(canvasSize, pos); ctx.stroke(); ctx.beginPath(); ctx.moveTo(pos, 0); ctx.lineTo(pos, canvasSize); ctx.stroke(); } }
+        function drawRoundedRect(x, y, width, height, radius, color, outlineColor = null) { ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(x + radius, y); ctx.lineTo(x + width - radius, y); ctx.arcTo(x + width, y, x + width, y + radius, radius); ctx.lineTo(x + width, y + height - radius); ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius); ctx.lineTo(x + radius, y + height); ctx.arcTo(x, y + height, x, y + height - radius, radius); ctx.lineTo(x, y + radius); ctx.arcTo(x, y, x + radius, y, radius); ctx.closePath(); ctx.fill(); if (outlineColor) { ctx.strokeStyle = outlineColor; ctx.lineWidth = 1; ctx.stroke(); } }
+        function drawSnake() { const head = snake.body[0]; const headX = head.x * gridSize; const headY = head.y * gridSize; const segmentSize = gridSize * 0.85; const offset = (gridSize - segmentSize) / 2; const radius = segmentSize * 0.35; for (let i = 1; i < snake.body.length; i++) { const segment = snake.body[i]; drawRoundedRect(segment.x * gridSize + offset, segment.y * gridSize + offset, segmentSize, segmentSize, radius, colors.snakeBody, colors.snakeOutline); } drawRoundedRect(headX + offset, headY + offset, segmentSize, segmentSize, radius, colors.snakeHead, colors.snakeOutline); ctx.fillStyle = colors.bgDark; const eyeSize = segmentSize * 0.15; let eye1X = headX + offset + segmentSize * 0.25; let eye1Y = headY + offset + segmentSize * 0.25; let eye2X = headX + offset + segmentSize * 0.75 - eyeSize; let eye2Y = headY + offset + segmentSize * 0.25; if (snake.dx === -1) { eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2; eye2Y = eye1Y; } else if (snake.dx === 1) { eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2; eye2Y = eye1Y; } else if (snake.dy === 1) { eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2; eye2X = eye1X; } else if (snake.dy === -1) { eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2; eye2X = eye1X; eye1Y = headY + offset + segmentSize * 0.75 - eyeSize; eye2Y = eye1Y; } ctx.beginPath(); ctx.arc(eye1X + eyeSize/2, eye1Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(eye2X + eyeSize/2, eye2Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill(); }
+        function drawFood() { if (!food) return; const foodX = food.x * gridSize + gridSize / 2; const foodY = food.y * gridSize + gridSize / 2; const radius = gridSize * 0.3; ctx.shadowColor = colors.foodGlow; ctx.shadowBlur = 12; ctx.fillStyle = colors.foodColor; ctx.beginPath(); ctx.arc(foodX, foodY, radius, 0, Math.PI * 2); ctx.fill(); ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
+        function moveSnake() { const isOppositeDirection = (nextDx === -snake.dx && snake.dx !== 0) || (nextDy === -snake.dy && snake.dy !== 0); if (!isOppositeDirection) { if ((nextDx !== 0 || nextDy !== 0) || (snake.dx !== 0 || snake.dy !== 0)) { snake.dx = nextDx; snake.dy = nextDy; } } const head = { x: snake.body[0].x + snake.dx, y: snake.body[0].y + snake.dy }; snake.body.unshift(head); const didEatFood = snake.body[0].x === food.x && snake.body[0].y === food.y; if (didEatFood) { score += 10; updateScoreDisplay(); placeFood(); } else { snake.body.pop(); } }
+        function placeFood() { let newFoodX, newFoodY, collision; while (true) { newFoodX = Math.floor(Math.random() * tileCount); newFoodY = Math.floor(Math.random() * tileCount); collision = false; for (let i = 0; i < snake.body.length; i++) { if (newFoodX === snake.body[i].x && newFoodY === snake.body[i].y) { collision = true; break; } } if (!collision) break; } const foodType = foodTypes[0]; food = { x: newFoodX, y: newFoodY, type: foodType }; }
+        function checkCollision() { const head = snake.body[0]; if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) { isGameOver = true; return; } for (let i = 1; i < snake.body.length; i++) { if (head.x === snake.body[i].x && head.y === snake.body[i].y) { isGameOver = true; return; } } }
+        function showGameOver() { clearTimeout(gameLoopTimeout); gameLoopTimeout = null; finalScoreDisplay.textContent = `Din poäng: ${score}`; gameOverScreen.classList.remove('show-restart-only'); gameOverScreen.style.display = 'flex'; playerNameInput.value = ''; playerNameInput.focus(); }
+        function updateScoreDisplay() { scoreDisplay.textContent = `Poäng: ${score}`; }
+        document.addEventListener('keydown', handleKeyDown); function handleKeyDown(event) { if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); } changeDirection(event.keyCode); } function changeDirection(keyCode) { if (isGameOver) return; const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40; let newDx = 0, newDy = 0; if (keyCode === LEFT_KEY) newDx = -1; else if (keyCode === UP_KEY) newDy = -1; else if (keyCode === RIGHT_KEY) newDx = 1; else if (keyCode === DOWN_KEY) newDy = 1; else return; const isOpposite = (newDx === -snake.dx && snake.dx !== 0) || (newDy === -snake.dy && snake.dy !== 0); if (!isOpposite) { nextDx = newDx; nextDy = newDy; } }
+        function isTouchDevice() { try { document.createEvent("TouchEvent"); return true; } catch (e) { return false; } } if (isTouchDevice()) { touchControls.style.display = 'grid'; document.getElementById('up-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(38); }); document.getElementById('down-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(40); }); document.getElementById('left-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(37); }); document.getElementById('right-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(39); }); }
+        function getHighScores() { const scores = localStorage.getItem('neonSnakeHighScores_v1'); return scores ? JSON.parse(scores) : []; } function saveHighScore(name, score) { const scores = getHighScores(); scores.push({ name, score }); scores.sort((a, b) => b.score - a.score); scores.splice(10); localStorage.setItem('neonSnakeHighScores_v1', JSON.stringify(scores)); } function displayHighScores() { const scores = getHighScores(); scoreboardList.innerHTML = ''; if (scores.length === 0) { scoreboardList.innerHTML = '<li>Inga poäng sparade!</li>'; } else { scores.forEach((entry, index) => { const li = document.createElement('li'); const displayName = entry.name.length > 12 ? entry.name.substring(0, 12) + '...' : entry.name; li.innerHTML = `<span>${index + 1}. ${displayName}</span><span>${entry.score} p</span>`; scoreboardList.appendChild(li); }); } }
+        scoreboardButton.addEventListener('click', () => { if (!isGameOver && startScreen.style.display === 'none' && gameLoopTimeout) { clearTimeout(gameLoopTimeout); gameLoopTimeout = null; } displayHighScores(); scoreboardModal.style.display = 'flex'; }); closeScoreboardButton.addEventListener('click', () => { scoreboardModal.style.display = 'none'; if (gameOverScreen.classList.contains('show-restart-only')) { gameOverScreen.style.display = 'flex'; } else if (!isGameOver && startScreen.style.display === 'none' && !gameLoopTimeout) { gameLoop(); } }); saveScoreForm.addEventListener('submit', (e) => { e.preventDefault(); const playerName = playerNameInput.value.trim(); if (playerName) { saveHighScore(playerName, score); gameOverScreen.classList.add('show-restart-only'); gameOverScreen.style.display = 'none'; displayHighScores(); scoreboardModal.style.display = 'flex'; } else { playerNameInput.focus(); } });
         clearAndDrawBackground();
-
     </script>
 </body>
 </html>
