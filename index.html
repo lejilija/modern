@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Futuristiskt Glidarspel</title>
+    <title>Neonormen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variabler för futuristiskt tema */
+        /* CSS Variabler för neonrosa/lime tema */
         :root {
             --modern-font: 'Inter', sans-serif;
-            /* Mörkt tema med neon-accenter */
-            --bg-dark: #1a1a2e; /* Mörkblå/lila bakgrund */
-            --bg-medium: #1f1f3a;
-            --bg-light: #2a2a4a;
-            --accent-cyan: #00ffff;
-            --accent-magenta: #ff00ff;
-            --accent-lime: #a0ff00;
-            --text-light: #e0e0ff;
-            --text-medium: #a0a0cc;
-            --text-dark: #1a1a2e;
-            --glow-cyan: rgba(0, 255, 255, 0.7);
+            /* Mörkt tema */
+            --bg-dark: #121212; /* Mörkare gråsvart */
+            --bg-medium: #1e1e1e;
+            --bg-light: #282828;
+            /* Neon accenter */
+            --accent-magenta: #ff00ff; /* Neonrosa */
+            --accent-lime: #a0ff00;   /* Neongrön */
             --glow-magenta: rgba(255, 0, 255, 0.7);
+            --glow-lime: rgba(160, 255, 0, 0.7);
+            /* Textfärger */
+            --text-light: #f0f0f0; /* Ljusare text */
+            --text-medium: #a0a0a0;
+            --text-dark: #121212;
         }
 
-        /* Grundläggande stil + typsnitt för allt */
+        /* Grundläggande stil + typsnitt */
         body, button, input, select, textarea {
             font-family: var(--modern-font);
         }
@@ -34,80 +35,76 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Justera för att ge plats åt knappar */
+            justify-content: flex-start;
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+            background: var(--bg-dark); /* Solid mörk bakgrund */
             margin: 0;
-            padding: 70px 15px 20px 15px; /* Behåll padding upptill för knappar */
+            padding: 70px 15px 20px 15px;
             box-sizing: border-box;
             color: var(--text-light);
             overscroll-behavior: none;
-            font-size: 14px; /* Något större basstorlek */
+            font-size: 14px;
         }
 
-        /* Knappar i hörn - modern stil */
+        /* Knappar i hörn - minimalistisk stil */
         #scoreboard-button, #play-again-button {
             position: fixed;
             top: 15px;
-            padding: 10px 15px;
-            font-size: 0.9em; /* Något mindre text */
+            padding: 8px 18px; /* Lite mindre padding */
+            font-size: 0.9em;
             font-weight: bold;
-            border: none;
-            border-radius: 20px; /* Rundade hörn */
+            border: 1px solid var(--accent-magenta); /* Tunn kant */
+            border-radius: 20px;
             cursor: pointer;
             z-index: 100;
             transition: all 0.2s ease;
-            box-shadow: 0 0 10px 0 var(--glow-cyan); /* Neonglöd */
-        }
-        #scoreboard-button {
-            right: 15px;
-            background-color: var(--accent-magenta);
-            color: var(--text-dark);
-            box-shadow: 0 0 10px 0 var(--glow-magenta);
+            background-color: transparent; /* Transparent bakgrund */
+            color: var(--accent-magenta);
+            box-shadow: 0 0 8px 0 var(--glow-magenta);
         }
         #play-again-button {
             left: 15px;
-            background-color: var(--accent-cyan);
-            color: var(--text-dark);
-            box-shadow: 0 0 10px 0 var(--glow-cyan);
+            border-color: var(--accent-lime);
+            color: var(--accent-lime);
+            box-shadow: 0 0 8px 0 var(--glow-lime);
         }
         #scoreboard-button:hover {
-            background-color: var(--text-light);
-            box-shadow: 0 0 15px 2px var(--glow-magenta);
+            background-color: var(--accent-magenta);
+            color: var(--text-dark);
+            box-shadow: 0 0 12px 1px var(--glow-magenta);
             transform: scale(1.05);
         }
         #play-again-button:hover {
-            background-color: var(--text-light);
-            box-shadow: 0 0 15px 2px var(--glow-cyan);
+            background-color: var(--accent-lime);
+            color: var(--text-dark);
+            box-shadow: 0 0 12px 1px var(--glow-lime);
             transform: scale(1.05);
         }
         #scoreboard-button:active, #play-again-button:active {
             transform: scale(0.98);
-            box-shadow: 0 0 5px 0 var(--glow-cyan);
+            opacity: 0.8;
         }
-         #scoreboard-button:active { box-shadow: 0 0 5px 0 var(--glow-magenta); }
-
 
         /* Poängvisning */
         #score-display {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--glow-cyan);
-            order: -1; /* Behåll ovanför spelet */
+            font-size: 1.6em;
+            margin-bottom: 15px; /* Närmare spelet */
+            color: var(--accent-lime); /* Lime poäng */
+            text-shadow: 0 0 8px var(--glow-lime);
+            order: -1;
             font-weight: bold;
         }
 
         .game-container {
             position: relative;
-            border: 2px solid var(--accent-cyan); /* Tunn neonkant */
-            background-color: var(--bg-dark); /* Mörk bakgrund för spelplan */
-            box-shadow: 0 0 15px 2px var(--glow-cyan); /* Glöd runt container */
-            border-radius: 10px; /* Rundade hörn */
+            border: 2px solid var(--accent-magenta); /* Neonrosa kant */
+            background-color: var(--bg-medium); /* Något ljusare än body */
+            box-shadow: 0 0 15px 2px var(--glow-magenta);
+            border-radius: 8px; /* Lite mindre rundning */
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 15px; /* Närmare kontroller */
             width: 100%;
-            max-width: 404px; /* Justerad för 2px border */
+            max-width: 404px;
             box-sizing: border-box;
         }
 
@@ -117,31 +114,21 @@
             height: auto;
             max-width: 400px;
             margin: 0 auto;
-            /* Ta bort image-rendering, inte relevant för smooth ritning */
-            background-color: transparent; /* Låt JS rita bakgrund */
-            border-radius: 8px; /* Matcha container inuti */
+            background-color: transparent;
+            border-radius: 6px; /* Matcha container inuti */
         }
 
-        /* Overlays (Start/Game Over) - modern stil */
+        /* Overlays (Start/Game Over) - minimalistisk stil */
         #start-screen, #game-over-screen {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(26, 26, 46, 0.95); /* Mörk transparent */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 10;
-            border-radius: 8px; /* Matcha container */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(18, 18, 18, 0.9); /* Mörkare overlay */
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 20px; box-sizing: border-box; z-index: 10;
+            border-radius: 6px;
         }
-
         #game-over-screen { display: none; }
 
-        /* Dölj element när endast omstartsknappen ska visas (samma logik) */
+        /* Dölj element logik (samma) */
         #game-over-screen.show-restart-only h1,
         #game-over-screen.show-restart-only #final-score,
         #game-over-screen.show-restart-only #save-score-form { display: none; }
@@ -149,18 +136,18 @@
         #game-over-screen.show-restart-only #restart-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-top: 0; }
         #game-over-screen:not(.show-restart-only) #restart-button { display: none; }
 
-        h1 {
-            font-size: 2em; /* Större titel */
-            margin-bottom: 35px;
-            color: var(--accent-cyan);
-            line-height: 1.3;
-            text-shadow: 0 0 10px var(--glow-cyan);
+        h1 { /* Används för start/game over */
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: var(--accent-magenta);
+            line-height: 1.2;
+            text-shadow: 0 0 10px var(--glow-magenta);
             font-weight: bold;
         }
         #game-over-screen h1 {
-            font-size: 1.8em;
-            color: var(--accent-magenta); /* Magenta för Game Over */
-            text-shadow: 0 0 10px var(--glow-magenta);
+             /* Ny text sätts via HTML */
+             color: var(--accent-magenta); /* Behåll magenta för game over */
+             text-shadow: 0 0 10px var(--glow-magenta);
         }
         #final-score {
             font-size: 1.3em;
@@ -168,174 +155,181 @@
             color: var(--text-light);
         }
 
-        /* Knappar - modern stil */
+        /* Knappar - minimalistisk stil */
         button, input[type="submit"] {
-            padding: 12px 25px;
+            padding: 10px 22px;
             font-size: 1em;
             font-weight: bold;
             cursor: pointer;
             border: none;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            background: var(--accent-lime); /* Solid lime bakgrund */
             color: var(--text-dark);
-            border-radius: 25px; /* Mer rundade */
-            box-shadow: 0 0 8px 0 var(--glow-cyan);
+            border-radius: 25px;
+            box-shadow: 0 0 10px 0 var(--glow-lime);
             transition: all 0.2s ease;
             margin-top: 20px;
-            text-shadow: none; /* Ta bort retro-skugga */
+            text-shadow: none;
             vertical-align: middle;
             box-sizing: border-box;
         }
         button:active, input[type="submit"]:active {
             transform: scale(0.97);
-            box-shadow: 0 0 4px 0 var(--glow-cyan);
+            box-shadow: 0 0 5px 0 var(--glow-lime);
+            opacity: 0.9;
         }
         button:hover, input[type="submit"]:hover {
-             box-shadow: 0 0 15px 2px var(--glow-magenta);
+             box-shadow: 0 0 15px 2px var(--glow-lime);
              transform: scale(1.03);
+             filter: brightness(1.1); /* Ljusare vid hover */
         }
-        /* Specifika knappar kan behålla gradient eller få egen färg */
-        #start-button { /* Behåll gradient */ }
-        #restart-button { /* Behåll gradient */ }
+        /* Specifika knappar */
+        #start-button { background: var(--accent-magenta); color: var(--text-dark); box-shadow: 0 0 10px 0 var(--glow-magenta);}
+        #start-button:hover { box-shadow: 0 0 15px 2px var(--glow-magenta); filter: brightness(1.1); }
+        #start-button:active { box-shadow: 0 0 5px 0 var(--glow-magenta); opacity: 0.9; }
 
-        /* Poängtavla Modal - modern stil */
+        #restart-button { /* Använder generell stil (lime) */ }
+        input[type="submit"] { /* Spara-knapp, använder generell stil (lime) */ }
+
+
+        /* Poängtavla Modal - minimalistisk stil */
         #scoreboard-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(10, 10, 20, 0.85); /* Mörkare overlay */
+            background-color: rgba(10, 10, 10, 0.9); /* Ännu mörkare overlay */
             z-index: 20; align-items: center; justify-content: center;
             padding: 15px; box-sizing: border-box;
         }
         #scoreboard-content {
-            background-color: var(--bg-light);
-            padding: 25px 30px;
-            border-radius: 15px; /* Rundade hörn */
-            width: 100%; max-width: 400px; /* Lite bredare */
+            background-color: var(--bg-medium);
+            padding: 20px 25px;
+            border-radius: 10px;
+            width: 100%; max-width: 380px;
             max-height: 80%; overflow-y: auto; text-align: center;
-            border: 1px solid var(--accent-magenta); /* Tunn kant */
-            box-shadow: 0 0 20px 3px var(--glow-magenta); /* Glöd */
+            border: 1px solid var(--accent-magenta);
+            box-shadow: 0 0 15px 1px var(--glow-magenta);
         }
         #scoreboard-content h2 {
-            margin-bottom: 25px; color: var(--accent-magenta);
-            font-size: 1.6em; text-shadow: 0 0 8px var(--glow-magenta);
+            margin-bottom: 20px; color: var(--accent-magenta);
+            font-size: 1.5em; text-shadow: 0 0 8px var(--glow-magenta);
         }
         #scoreboard-list { list-style: none; padding: 0; margin: 0; text-align: left; }
         #scoreboard-list li {
-            padding: 10px 5px; border-bottom: 1px solid var(--bg-medium); /* Subtil avdelare */
-            font-size: 1.1em; display: flex; justify-content: space-between;
+            padding: 8px 5px;
+            border-bottom: 1px solid var(--bg-light); /* Mörkare avdelare */
+            font-size: 1em; display: flex; justify-content: space-between;
             color: var(--text-light);
         }
         #scoreboard-list li:last-child { border-bottom: none; }
-        #scoreboard-list li span:first-child { /* Namn */
-             color: var(--text-medium); margin-right: 15px;
-             overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-        #scoreboard-list li span:last-child { /* Poäng */
-            color: var(--accent-lime); /* Limegrön för poäng */
-            font-weight: bold;
-        }
+        #scoreboard-list li span:first-child { color: var(--text-medium); margin-right: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        #scoreboard-list li span:last-child { color: var(--accent-lime); font-weight: bold; } /* Lime poäng */
         #close-scoreboard {
-            margin-top: 25px;
-            background: var(--text-medium); /* Gråaktig stäng-knapp */
-             color: var(--bg-dark);
+            margin-top: 20px;
+            background: var(--bg-light); /* Mörk stäng-knapp */
+             color: var(--text-medium);
              box-shadow: none;
         }
         #close-scoreboard:hover {
-            background: var(--text-light);
-            box-shadow: 0 0 8px 1px var(--text-medium);
+            background: var(--bg-medium);
+            color: var(--text-light);
              transform: scale(1.03);
         }
 
-        /* Kontroller - modern stil */
+        /* Kontroller - Ny layout (Diamond) och stil */
         .controls {
-            display: grid; grid-template-columns: repeat(3, auto); grid-template-rows: auto auto;
-            gap: 10px; width: auto; justify-items: center; margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 60px); /* Fasta kolumnbredder */
+            grid-template-rows: repeat(3, 60px);    /* Fasta radhöjder */
+            gap: 5px; /* Mindre gap */
+            width: auto;
+            justify-content: center; /* Centrera gridet */
+            align-items: center; /* Centrera knappar i celler */
+            margin-bottom: 20px; /* Marginal under kontroller */
             display: none; /* Visas endast via JS för touch */
         }
         .control-button {
             display: flex; align-items: center; justify-content: center;
-            width: 55px; height: 55px;
-            background-color: var(--bg-light);
-            color: var(--accent-cyan);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 50%; /* Cirkulära knappar */
+            width: 55px; height: 55px; /* Behåll storlek */
+            background-color: transparent; /* Transparent bakgrund */
+            color: var(--accent-lime); /* Lime pilar */
+            border: 1px solid var(--accent-lime);
+            border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 8px 0 var(--glow-cyan);
+            box-shadow: 0 0 8px 0 var(--glow-lime);
             transition: all 0.2s ease;
             user-select: none; -webkit-user-select: none; -ms-user-select: none;
-            font-size: 1.5em; /* Större ikon/pil */
+            font-size: 1.5em;
         }
         .control-button:active {
-            box-shadow: 0 0 4px 0 var(--glow-cyan);
-            transform: scale(0.95); background-color: var(--accent-cyan); color: var(--bg-dark);
+            box-shadow: 0 0 4px 0 var(--glow-lime);
+            transform: scale(0.95); background-color: var(--accent-lime); color: var(--bg-dark);
         }
          .control-button:hover {
-             background-color: var(--bg-medium);
-             box-shadow: 0 0 12px 1px var(--glow-cyan);
+             background-color: rgba(160, 255, 0, 0.1); /* Svag lime-bakgrund vid hover */
+             box-shadow: 0 0 12px 1px var(--glow-lime);
          }
 
         /* Modern pil (Chevron) med borders */
         .arrow {
             display: inline-block;
-            border: solid var(--accent-cyan);
-            border-width: 0 4px 4px 0; /* Skapar pilspets */
-            padding: 5px;
+            border: solid var(--accent-lime); /* Lime pilar */
+            border-width: 0 3px 3px 0; /* Lite tunnare pilar */
+            padding: 4px;
             transition: border-color 0.2s ease;
         }
         .control-button:active .arrow { border-color: var(--bg-dark); }
 
-        .arrow-up { transform: rotate(-135deg); -webkit-transform: rotate(-135deg); margin-bottom: 3px; }
-        .arrow-down { transform: rotate(45deg); -webkit-transform: rotate(45deg); margin-top: 3px; }
-        .arrow-left { transform: rotate(135deg); -webkit-transform: rotate(135deg); margin-right: 3px; }
-        .arrow-right { transform: rotate(-45deg); -webkit-transform: rotate(-45deg); margin-left: 3px; }
+        .arrow-up { transform: rotate(-135deg); -webkit-transform: rotate(-135deg); margin-bottom: 2px; }
+        .arrow-down { transform: rotate(45deg); -webkit-transform: rotate(45deg); margin-top: 2px; }
+        .arrow-left { transform: rotate(135deg); -webkit-transform: rotate(135deg); margin-right: 2px; }
+        .arrow-right { transform: rotate(-45deg); -webkit-transform: rotate(-45deg); margin-left: 2px; }
 
-
-        /* Grid placering för ny layout */
-        #left-button { grid-column: 1; grid-row: 1; }
+        /* Grid placering för Diamond layout */
         #up-button { grid-column: 2; grid-row: 1; }
-        #right-button { grid-column: 3; grid-row: 1; }
-        #down-button { grid-column: 2; grid-row: 2; }
+        #left-button { grid-column: 1; grid-row: 2; }
+        #right-button { grid-column: 3; grid-row: 2; }
+        #down-button { grid-column: 2; grid-row: 3; }
 
         /* Footer */
-        footer { margin-top: auto; padding-top: 15px; font-size: 0.8em; color: var(--text-medium); text-align: center; opacity: 0.7; }
+        footer { margin-top: auto; padding-top: 10px; font-size: 0.8em; color: var(--text-medium); text-align: center; opacity: 0.6; }
 
-        /* Inputfält & Spara-knapp Linjering - modern stil */
+        /* Inputfält & Spara-knapp Linjering - minimalistisk stil */
         input[type="text"] {
-            padding: 12px 15px;
-            border: 1px solid var(--accent-cyan);
+            padding: 10px 15px;
+            border: 1px solid var(--accent-magenta); /* Magenta kant */
             border-radius: 20px;
             margin: 0 10px 0 0;
             background-color: var(--bg-medium);
             color: var(--text-light);
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
             font-size: 1em;
-            width: calc(100% - 150px); /* Anpassa bredd */
-            max-width: 200px;
+            width: calc(100% - 140px); /* Justera bredd för knapp */
+            max-width: 190px;
             box-sizing: border-box;
             vertical-align: middle;
             line-height: normal;
-            height: auto; /* Låt padding bestämma höjd */
+            height: auto;
             transition: all 0.2s ease;
         }
          input[type="text"]:focus {
              outline: none;
-             border-color: var(--accent-magenta);
-             box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 10px var(--glow-magenta);
+             border-color: var(--accent-lime); /* Lime fokus */
+             box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 0 0 10px var(--glow-lime);
          }
 
           input[type="submit"] {
-              padding: 12px 20px; /* Matcha input-höjd */
+              padding: 10px 18px; /* Matcha input-höjd */
               font-size: 1em;
               width: auto;
-              margin-top: 0; /* Ta bort margin-top */
+              margin-top: 0;
               height: auto;
               vertical-align: middle;
-              /* Behåller gradient från generell knappstil */
+              /* Använder generell knappstil (lime) */
           }
           #save-score-form {
               display: flex;
-              align-items: center; /* Centrera vertikalt */
+              align-items: center;
               justify-content: center;
               width: 100%;
-              max-width: 360px; /* Öka lite för att få plats */
+              max-width: 340px; /* Justera max bredd */
               margin-top: 15px;
           }
     </style>
@@ -348,12 +342,15 @@
 
     <div class="game-container">
         <div id="start-screen">
-             <h1>Glidaren</h1> <button id="start-button">Starta</button>
+             <h1>Neonormen</h1>
+            <button id="start-button">Starta</button>
         </div>
         <div id="game-over-screen">
-            <h1>Kollision!</h1> <p id="final-score">Din poäng: 0</p>
+             <h1>Neonej!</h1>
+            <p id="final-score">Din poäng: 0</p>
             <form id="save-score-form">
-                <input type="text" id="player-name" placeholder="Ditt namn" maxlength="12" required> <input type="submit" value="Spara">
+                <input type="text" id="player-name" placeholder="Ditt namn" maxlength="12" required>
+                <input type="submit" value="Spara">
             </form>
             <button id="restart-button">Spela igen</button>
         </div>
@@ -375,7 +372,7 @@
         </div>
     </div>
 
-    <footer>powered by Inmemory - Futuristic Edition</footer>
+    <footer>Neonormen - Minimalist Edition</footer>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -396,29 +393,29 @@
         const touchControls = document.getElementById('touch-controls');
 
         // Spelinställningar
-        const gridSize = 20; // Behåll gridstorlek för logik
+        const gridSize = 20;
         const canvasSize = 400;
         const tileCount = canvasSize / gridSize;
 
-        // Definiera färger direkt i JS för Canvas (matchar CSS-variabler)
+        // Färger för Canvas (matchar CSS)
         const colors = {
-            bgDark: '#1a1a2e',
-            gridColor: 'rgba(42, 42, 74, 0.5)', // svagare grid
-            gliderHead: '#00ffff', // Cyan huvud
-            gliderBody: '#a0ff00', // Limegrön kropp
-            gliderOutline: 'rgba(255, 255, 255, 0.1)', // Subtil vit outline
-            foodColor: '#ff00ff', // Magenta mat
-            foodGlow: 'rgba(255, 0, 255, 0.8)',
+            bgDark: '#121212',
+            gridColor: 'rgba(255, 255, 255, 0.05)', // Svagare vit grid
+            snakeHead: '#ff00ff', // Magenta huvud
+            snakeBody: '#a0ff00', // Limegrön kropp
+            snakeOutline: 'rgba(0, 0, 0, 0.2)', // Mörkare outline
+            foodColor: '#a0ff00', // Lime mat
+            foodGlow: 'rgba(160, 255, 0, 0.8)', // Lime glöd
         };
 
         // Spelvariabler
-        let glider; // Byt namn från skier
+        let snake; // Byt namn från glider
         let food;
         let score;
         let gameLoopTimeout;
-        let gameSpeed = 200; // Återställer till lite snabbare tempo för modern känsla
+        let gameSpeed = 180; // Justerad hastighet
         let isGameOver;
-        const foodTypes = ['energy_orb']; // Ny mattyp
+        const foodTypes = ['neon_orb']; // Mattyp
 
         // Input-buffring
         let nextDx = 0;
@@ -431,12 +428,10 @@
             isGameOver = false;
             score = 0;
             updateScoreDisplay();
-            // Startposition och initial kropp
             const startX = Math.floor(tileCount / 2);
             const startY = Math.floor(tileCount / 2);
-            glider = {
-                dx: 0, dy: 0, // Startar stillastående
-                // Kroppen är nu en array av {x, y} objekt
+            snake = {
+                dx: 0, dy: 0,
                 body: [{ x: startX, y: startY }]
             };
             nextDx = 0;
@@ -454,15 +449,13 @@
         // --- Spelloop ---
         function gameLoop() {
             if (isGameOver) { showGameOver(); return; }
-
             clearTimeout(gameLoopTimeout);
-
             gameLoopTimeout = setTimeout(() => {
-                clearAndDrawBackground(); // Rita modern bakgrund
-                drawFood(); // Rita modern mat
-                moveGlider(); // Uppdaterad flyttlogik
-                drawGlider(); // Rita modern glidare
-                checkCollision(); // Samma kollisionslogik
+                clearAndDrawBackground();
+                drawFood();
+                moveSnake(); // Uppdaterat namn
+                drawSnake(); // Uppdaterat namn
+                checkCollision();
                 if (!isGameOver) {
                     gameLoop();
                  } else {
@@ -479,23 +472,15 @@
 
             // Subtilt rutnät
             ctx.strokeStyle = colors.gridColor;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.5; // Tunnare grid
             for (let i = 1; i < tileCount; i++) {
                 const pos = i * gridSize;
-                // Horisontella linjer
-                ctx.beginPath();
-                ctx.moveTo(0, pos);
-                ctx.lineTo(canvasSize, pos);
-                ctx.stroke();
-                // Vertikala linjer
-                ctx.beginPath();
-                ctx.moveTo(pos, 0);
-                ctx.lineTo(pos, canvasSize);
-                ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, pos); ctx.lineTo(canvasSize, pos); ctx.stroke(); // Horisontell
+                ctx.beginPath(); ctx.moveTo(pos, 0); ctx.lineTo(pos, canvasSize); ctx.stroke(); // Vertikal
             }
         }
 
-        // Funktion för att rita rundade rektanglar (används för glidaren)
+        // Funktion för att rita rundade rektanglar
         function drawRoundedRect(x, y, width, height, radius, color, outlineColor = null) {
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -510,7 +495,6 @@
             ctx.arcTo(x, y, x + radius, y, radius);
             ctx.closePath();
             ctx.fill();
-
             if (outlineColor) {
                 ctx.strokeStyle = outlineColor;
                 ctx.lineWidth = 1;
@@ -518,93 +502,75 @@
             }
         }
 
-        function drawGlider() {
-            const head = glider.body[0];
+        function drawSnake() { // Byt namn från drawGlider
+            const head = snake.body[0];
             const headX = head.x * gridSize;
             const headY = head.y * gridSize;
-            const segmentSize = gridSize * 0.8; // Lite mindre än grid för mellanrum
+            const segmentSize = gridSize * 0.85; // Lite större segment
             const offset = (gridSize - segmentSize) / 2;
-            const radius = segmentSize * 0.3; // Rundningsradie
+            const radius = segmentSize * 0.35; // Mer rundning
 
             // Rita kroppen (limegrön)
-            for (let i = 1; i < glider.body.length; i++) {
-                const segment = glider.body[i];
+            for (let i = 1; i < snake.body.length; i++) {
+                const segment = snake.body[i];
                 drawRoundedRect(
-                    segment.x * gridSize + offset,
-                    segment.y * gridSize + offset,
-                    segmentSize,
-                    segmentSize,
-                    radius,
-                    colors.gliderBody,
-                    colors.gliderOutline
+                    segment.x * gridSize + offset, segment.y * gridSize + offset,
+                    segmentSize, segmentSize, radius,
+                    colors.snakeBody, colors.snakeOutline
                 );
             }
 
-            // Rita huvudet (cyan) - lite större och med "ögon"
-            const headSize = gridSize * 0.9;
-            const headOffset = (gridSize - headSize) / 2;
-            const headRadius = headSize * 0.3;
+            // Rita huvudet (magenta)
              drawRoundedRect(
-                headX + headOffset,
-                headY + headOffset,
-                headSize,
-                headSize,
-                headRadius,
-                colors.gliderHead,
-                colors.gliderOutline
+                headX + offset, headY + offset,
+                segmentSize, segmentSize, radius, // Samma storlek som kroppen nu
+                colors.snakeHead, colors.snakeOutline
             );
 
-            // Enkla "ögon" på huvudet
-            ctx.fillStyle = colors.bgDark; // Mörk färg för ögon
-            const eyeSize = headSize * 0.15;
-            const eyeOffset = headSize * 0.25;
-            // Anpassa ögonens position baserat på riktning (förenklat)
-            let eyeX1 = headX + headOffset + eyeOffset;
-            let eyeY1 = headY + headOffset + eyeOffset;
-            let eyeX2 = headX + headOffset + headSize - eyeOffset - eyeSize;
-            let eyeY2 = headY + headOffset + eyeOffset;
+             // Enkla "ögon" - små prickar
+             ctx.fillStyle = colors.bgDark;
+             const eyeSize = segmentSize * 0.15;
+             // Positionera ögon lite mer centrerat
+             let eye1X = headX + offset + segmentSize * 0.25;
+             let eye1Y = headY + offset + segmentSize * 0.25;
+             let eye2X = headX + offset + segmentSize * 0.75 - eyeSize;
+             let eye2Y = headY + offset + segmentSize * 0.25;
 
-            if (glider.dx === -1) { // Vänster
-                 eyeX1 = headX + headOffset + eyeOffset;
-                 eyeY1 = headY + headOffset + eyeOffset;
-                 eyeX2 = headX + headOffset + eyeOffset;
-                 eyeY2 = headY + headOffset + headSize - eyeOffset - eyeSize;
-            } else if (glider.dx === 1) { // Höger
-                 eyeX1 = headX + headOffset + headSize - eyeOffset - eyeSize;
-                 eyeY1 = headY + headOffset + eyeOffset;
-                 eyeX2 = headX + headOffset + headSize - eyeOffset - eyeSize;
-                 eyeY2 = headY + headOffset + headSize - eyeOffset - eyeSize;
-            } else if (glider.dy === -1) { // Upp
-                eyeX1 = headX + headOffset + eyeOffset;
-                eyeY1 = headY + headOffset + eyeOffset;
-                eyeX2 = headX + headOffset + headSize - eyeOffset - eyeSize;
-                eyeY2 = headY + headOffset + eyeOffset;
-            } else if (glider.dy === 1) { // Ner
-                 eyeX1 = headX + headOffset + eyeOffset;
-                 eyeY1 = headY + headOffset + headSize - eyeOffset - eyeSize;
-                 eyeX2 = headX + headOffset + headSize - eyeOffset - eyeSize;
-                 eyeY2 = headY + headOffset + headSize - eyeOffset - eyeSize;
-            }
-             ctx.fillRect(eyeX1, eyeY1, eyeSize, eyeSize);
-             ctx.fillRect(eyeX2, eyeY2, eyeSize, eyeSize);
+             // Justera baserat på riktning för att ge lite liv
+             if (snake.dx === -1) { // Vänster
+                 eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2;
+                 eye2Y = eye1Y;
+             } else if (snake.dx === 1) { // Höger
+                 eye1Y = headY + offset + segmentSize * 0.5 - eyeSize / 2;
+                 eye2Y = eye1Y;
+             } else if (snake.dy === 1) { // Ner
+                 eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2;
+                 eye2X = eye1X;
+             } else if (snake.dy === -1) { // Upp
+                 eye1X = headX + offset + segmentSize * 0.5 - eyeSize / 2;
+                 eye2X = eye1X;
+                 eye1Y = headY + offset + segmentSize * 0.75 - eyeSize; // Flytta ner ögonen lite när den åker upp
+                 eye2Y = eye1Y;
+             }
 
+             ctx.beginPath(); ctx.arc(eye1X + eyeSize/2, eye1Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill();
+             ctx.beginPath(); ctx.arc(eye2X + eyeSize/2, eye2Y + eyeSize/2, eyeSize/2, 0, Math.PI*2); ctx.fill();
         }
 
         function drawFood() {
-            if (!food) return; // Säkerhetskoll
-            const foodX = food.x * gridSize + gridSize / 2; // Centrera i rutan
+            if (!food) return;
+            const foodX = food.x * gridSize + gridSize / 2;
             const foodY = food.y * gridSize + gridSize / 2;
-            const radius = gridSize * 0.35; // Storlek på maten
+            const radius = gridSize * 0.3; // Lite mindre mat
 
-            // Rita glöd
+            // Glöd
             ctx.shadowColor = colors.foodGlow;
-            ctx.shadowBlur = 15;
+            ctx.shadowBlur = 12;
 
-            // Rita cirkel
+            // Cirkel (Lime)
             ctx.fillStyle = colors.foodColor;
             ctx.beginPath();
             ctx.arc(foodX, foodY, radius, 0, Math.PI * 2);
-            ctx.closePath();
             ctx.fill();
 
             // Återställ skugga
@@ -614,27 +580,23 @@
 
 
         // --- Spelmekanik ---
-        function moveGlider() { // Byt namn från moveSkier
-            // Tillämpa buffrad riktning
-            const isOppositeDirection = (nextDx === -glider.dx && glider.dx !== 0) || (nextDy === -glider.dy && glider.dy !== 0);
+        function moveSnake() { // Byt namn från moveGlider
+            const isOppositeDirection = (nextDx === -snake.dx && snake.dx !== 0) || (nextDy === -snake.dy && snake.dy !== 0);
             if (!isOppositeDirection) {
-                 if ((nextDx !== 0 || nextDy !== 0) || (glider.dx !== 0 || glider.dy !== 0)) {
-                    glider.dx = nextDx;
-                    glider.dy = nextDy;
+                 if ((nextDx !== 0 || nextDy !== 0) || (snake.dx !== 0 || snake.dy !== 0)) {
+                    snake.dx = nextDx;
+                    snake.dy = nextDy;
                  }
             }
-
-            // Beräkna ny huvudposition
-            const head = { x: glider.body[0].x + glider.dx, y: glider.body[0].y + glider.dy };
-            glider.body.unshift(head); // Lägg till nytt huvud
-
-            const didEatFood = glider.body[0].x === food.x && glider.body[0].y === food.y;
+            const head = { x: snake.body[0].x + snake.dx, y: snake.body[0].y + snake.dy };
+            snake.body.unshift(head);
+            const didEatFood = snake.body[0].x === food.x && snake.body[0].y === food.y;
             if (didEatFood) {
                 score += 10;
                 updateScoreDisplay();
-                placeFood(); // Placera ny mat, kroppen växer automatiskt
+                placeFood();
             } else {
-                glider.body.pop(); // Ta bort sista segmentet om ingen mat åts
+                snake.body.pop();
             }
         }
 
@@ -644,159 +606,110 @@
                 newFoodX = Math.floor(Math.random() * tileCount);
                 newFoodY = Math.floor(Math.random() * tileCount);
                 collision = false;
-                // Kontrollera kollision med glidarens kropp
-                for (let i = 0; i < glider.body.length; i++) {
-                    if (newFoodX === glider.body[i].x && newFoodY === glider.body[i].y) {
+                for (let i = 0; i < snake.body.length; i++) { // Kolla mot snake.body
+                    if (newFoodX === snake.body[i].x && newFoodY === snake.body[i].y) {
                         collision = true;
                         break;
                     }
                 }
                 if (!collision) break;
             }
-            const foodType = foodTypes[0]; // Alltid 'energy_orb'
+            const foodType = foodTypes[0];
             food = { x: newFoodX, y: newFoodY, type: foodType };
         }
 
         function checkCollision() {
-            const head = glider.body[0];
-            // Kollision med väggar
+            const head = snake.body[0];
+            // Väggar
             if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
-                isGameOver = true;
-                return;
+                isGameOver = true; return;
             }
-            // Kollision med sig själv
-            for (let i = 1; i < glider.body.length; i++) {
-                if (head.x === glider.body[i].x && head.y === glider.body[i].y) {
-                    isGameOver = true;
-                    return;
+            // Sig själv
+            for (let i = 1; i < snake.body.length; i++) {
+                if (head.x === snake.body[i].x && head.y === snake.body[i].y) {
+                    isGameOver = true; return;
                 }
             }
         }
 
         function showGameOver() {
-            clearTimeout(gameLoopTimeout);
-            gameLoopTimeout = null;
+            clearTimeout(gameLoopTimeout); gameLoopTimeout = null;
             finalScoreDisplay.textContent = `Din poäng: ${score}`;
             gameOverScreen.classList.remove('show-restart-only');
             gameOverScreen.style.display = 'flex';
-            playerNameInput.value = '';
-            playerNameInput.focus();
+            playerNameInput.value = ''; playerNameInput.focus();
         }
 
         function updateScoreDisplay() {
             scoreDisplay.textContent = `Poäng: ${score}`;
         }
 
-        // --- Kontroller (Samma logik, men för glidaren) ---
+        // --- Kontroller ---
         document.addEventListener('keydown', handleKeyDown);
-
         function handleKeyDown(event) {
-             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
-                 event.preventDefault();
-             }
+             if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); }
             changeDirection(event.keyCode);
         }
-
         function changeDirection(keyCode) {
             if (isGameOver) return;
-
-            const LEFT_KEY = 37;
-            const RIGHT_KEY = 39;
-            const UP_KEY = 38;
-            const DOWN_KEY = 40;
-
-            let newDx = 0;
-            let newDy = 0;
-
-            if (keyCode === LEFT_KEY) newDx = -1;
-            else if (keyCode === UP_KEY) newDy = -1;
-            else if (keyCode === RIGHT_KEY) newDx = 1;
-            else if (keyCode === DOWN_KEY) newDy = 1;
+            const LEFT_KEY = 37, RIGHT_KEY = 39, UP_KEY = 38, DOWN_KEY = 40;
+            let newDx = 0, newDy = 0;
+            if (keyCode === LEFT_KEY) newDx = -1; else if (keyCode === UP_KEY) newDy = -1;
+            else if (keyCode === RIGHT_KEY) newDx = 1; else if (keyCode === DOWN_KEY) newDy = 1;
             else return;
-
-            const isOpposite = (newDx === -glider.dx && glider.dx !== 0) || (newDy === -glider.dy && glider.dy !== 0);
-
-            if (!isOpposite) {
-                nextDx = newDx;
-                nextDy = newDy;
-            }
+            const isOpposite = (newDx === -snake.dx && snake.dx !== 0) || (newDy === -snake.dy && snake.dy !== 0);
+            if (!isOpposite) { nextDx = newDx; nextDy = newDy; }
         }
 
         // --- Touch-kontroller ---
         function isTouchDevice() { try { document.createEvent("TouchEvent"); return true; } catch (e) { return false; } }
-
         if (isTouchDevice()) {
-             touchControls.style.display = 'grid'; // Visa kontroller
+             touchControls.style.display = 'grid';
              document.getElementById('up-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(38); });
              document.getElementById('down-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(40); });
              document.getElementById('left-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(37); });
              document.getElementById('right-button').addEventListener('touchstart', (e) => { e.preventDefault(); changeDirection(39); });
          }
 
-        // --- Poängtavla (Använder ny nyckel) ---
+        // --- Poängtavla (Ny nyckel) ---
         function getHighScores() {
-            const scores = localStorage.getItem('gliderGameHighScores_v1_futuristic'); // Ny nyckel
+            const scores = localStorage.getItem('neonSnakeHighScores_v1'); // Ny nyckel
             return scores ? JSON.parse(scores) : [];
         }
-
         function saveHighScore(name, score) {
-            const scores = getHighScores();
-            scores.push({ name, score });
-            scores.sort((a, b) => b.score - a.score);
-            scores.splice(10); // Behåll topp 10
-            localStorage.setItem('gliderGameHighScores_v1_futuristic', JSON.stringify(scores)); // Spara med ny nyckel
+            const scores = getHighScores(); scores.push({ name, score });
+            scores.sort((a, b) => b.score - a.score); scores.splice(10);
+            localStorage.setItem('neonSnakeHighScores_v1', JSON.stringify(scores));
         }
-
         function displayHighScores() {
-            const scores = getHighScores();
-            scoreboardList.innerHTML = '';
-            if (scores.length === 0) {
-                scoreboardList.innerHTML = '<li>Inga poäng sparade!</li>';
-            } else {
-                scores.forEach((entry, index) => {
+            const scores = getHighScores(); scoreboardList.innerHTML = '';
+            if (scores.length === 0) { scoreboardList.innerHTML = '<li>Inga poäng sparade!</li>'; }
+            else { scores.forEach((entry, index) => {
                     const li = document.createElement('li');
-                    const displayName = entry.name.length > 12 ? entry.name.substring(0, 12) + '...' : entry.name; // Längre namn tillåtet
+                    const displayName = entry.name.length > 12 ? entry.name.substring(0, 12) + '...' : entry.name;
                     li.innerHTML = `<span>${index + 1}. ${displayName}</span><span>${entry.score} p</span>`;
-                    scoreboardList.appendChild(li);
-                });
+                    scoreboardList.appendChild(li); });
             }
         }
 
-        // Uppdaterad knapplogik (samma funktionalitet)
+        // Knapplogik
         scoreboardButton.addEventListener('click', () => {
-            if (!isGameOver && startScreen.style.display === 'none' && gameLoopTimeout) {
-                clearTimeout(gameLoopTimeout);
-                gameLoopTimeout = null;
-            }
-            displayHighScores();
-            scoreboardModal.style.display = 'flex';
+            if (!isGameOver && startScreen.style.display === 'none' && gameLoopTimeout) { clearTimeout(gameLoopTimeout); gameLoopTimeout = null; }
+            displayHighScores(); scoreboardModal.style.display = 'flex';
         });
-
         closeScoreboardButton.addEventListener('click', () => {
             scoreboardModal.style.display = 'none';
-            if (gameOverScreen.classList.contains('show-restart-only')) {
-                 gameOverScreen.style.display = 'flex';
-            } else if (!isGameOver && startScreen.style.display === 'none' && !gameLoopTimeout) {
-                gameLoop();
-            }
+            if (gameOverScreen.classList.contains('show-restart-only')) { gameOverScreen.style.display = 'flex'; }
+            else if (!isGameOver && startScreen.style.display === 'none' && !gameLoopTimeout) { gameLoop(); }
         });
-
         saveScoreForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const playerName = playerNameInput.value.trim();
-            if (playerName) {
-                saveHighScore(playerName, score);
-                gameOverScreen.classList.add('show-restart-only');
-                gameOverScreen.style.display = 'none';
-                displayHighScores();
-                scoreboardModal.style.display = 'flex';
-            } else {
-                playerNameInput.focus();
-            }
+            e.preventDefault(); const playerName = playerNameInput.value.trim();
+            if (playerName) { saveHighScore(playerName, score); gameOverScreen.classList.add('show-restart-only'); gameOverScreen.style.display = 'none'; displayHighScores(); scoreboardModal.style.display = 'flex'; }
+            else { playerNameInput.focus(); }
         });
 
-        // Kör igång när sidan laddats
-        clearAndDrawBackground(); // Rita bakgrunden direkt
+        // Starta
+        clearAndDrawBackground();
 
     </script>
 </body>
